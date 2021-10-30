@@ -1,6 +1,4 @@
 package com.mendosal.tvmaze.ui;
-
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -8,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,10 +19,6 @@ public class MyShowRecyclerViewAdapter extends RecyclerView.Adapter<MyShowRecycl
 
     private List<ShowEntity> mValues;
     Context ctx;
-
-    public MyShowRecyclerViewAdapter(List<ShowEntity> items) {
-        mValues = items;
-    }
 
     public MyShowRecyclerViewAdapter(Context context, List<ShowEntity> items) {
         mValues = items;
@@ -40,7 +35,9 @@ public class MyShowRecyclerViewAdapter extends RecyclerView.Adapter<MyShowRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.tvTitle.setText(holder.mItem.getName() + position);
+        holder.tvTitle.setText(holder.mItem.getName());
+        holder.rbAverage.setRating(holder.mItem.getRating().getAverage());
+        holder.tvGenres.setText(holder.mItem.getGenres().toString());
         Glide.with(ctx)
                 .load(holder.mItem.getImage().getMedium())
                 .into(holder.ivPoster);
@@ -60,6 +57,8 @@ public class MyShowRecyclerViewAdapter extends RecyclerView.Adapter<MyShowRecycl
         public final View mView;
         public final TextView tvTitle;
         public final ImageView ivPoster;
+        public final RatingBar rbAverage;
+        public final TextView tvGenres;
         public ShowEntity mItem;
 
         public ViewHolder(View view) {
@@ -67,6 +66,8 @@ public class MyShowRecyclerViewAdapter extends RecyclerView.Adapter<MyShowRecycl
             mView = view;
             tvTitle = view.findViewById(R.id.tvShowTitle);
             ivPoster = view.findViewById(R.id.ivShowPoster);
+            rbAverage = view.findViewById(R.id.rbAverage);
+            tvGenres = view.findViewById(R.id.tvShowGenre);
         }
     }
 }

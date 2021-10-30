@@ -2,15 +2,37 @@
     <!-- Base application theme. -->
     <style name="Theme.TVMaze" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/big_stone</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/alizarin_crimson</item>
+        <item name="colorSecondaryVariant">@color/sangria</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
     </style>
+        <!-- Customize your theme here. -->
+        <style name="TextSemibold" parent="TextAppearance.AppCompat">
+            <item name="android:fontFamily">@font/sfprotext_semibold</item>
+            <item name="android:textColor">?attr/colorOnPrimary</item>
+            <item name="android:textSize">18sp</item>
+        </style>
+
+        <style name="TextMedium" parent="TextAppearance.AppCompat">
+            <item name="android:fontFamily">@font/sfprotext_medium</item>
+            <item name="android:textColor">?attr/colorOnPrimary</item>
+            <item name="android:textSize">12sp</item>
+        </style>
+
+        <style name="RatingBarYellow" parent="Theme.AppCompat">
+            <item name="android:progressBackgroundTint">@color/silver</item>
+            <item name="android:progressTint">@color/yellow_orange</item>
+            <item name="ratingBarStyle">@android:style/Widget.Holo.RatingBar.Indicator</item>
+            <item name="android:scaleX">0.7</item>
+            <item name="android:scaleY">0.7</item>
+            <item name="android:transformPivotX">0dp</item>
+            <item name="android:transformPivotY">0dp</item>
+        </style>
+
 </resources>

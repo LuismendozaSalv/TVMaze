@@ -7,13 +7,13 @@ public class Rating {
 
     @SerializedName("average")
     @Expose
-    private double average;
+    private float average;
 
-    public double getAverage() {
+    public float getAverage() {
         return average;
     }
 
-    public void setAverage(double average) {
+    public void setAverage(float average) {
         this.average = average;
     }
 
