@@ -8,5 +8,14 @@
         android:id="@+id/showFragment"
         android:name="com.mendosal.tvmaze.ui.ShowFragment"
         android:label="fragment_show_list"
-        tools:layout="@layout/fragment_show_list" />
+        tools:layout="@layout/fragment_show_list" >
+        <action
+            android:id="@+id/action_showFragment_to_showDetailFragment"
+            app:destination="@id/showDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showDetailFragment"
+        android:name="com.mendosal.tvmaze.ui.ShowDetailFragment"
+        android:label="fragment_show_detail"
+        tools:layout="@layout/fragment_show_detail" />
 </navigation>

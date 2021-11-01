@@ -2,22 +2,25 @@
     <!-- Base application theme. -->
     <style name="Theme.TVMaze" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/silver</item>
-        <item name="colorOnPrimary">@color/big_stone</item>
-        <item name="colorOnPrimarySurface">@color/big_stone</item>
+        <item name="colorPrimary">@color/big_stone</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/crimson</item>
-        <item name="colorSecondaryVariant">@color/bright_red</item>
+        <item name="colorSecondary">@color/alizarin_crimson</item>
+        <item name="colorSecondaryVariant">@color/sangria</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="navigationIconTint">?attr/colorOnPrimary</item>
-        <item name="android:navigationBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="background">?attr/colorPrimary</item>
-        <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppTheme.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <!-- Set proper title size -->
+        <item name="android:textSize">@dimen/abc_text_size_title_material</item>
+        <item name="android:fontFamily">@font/sfprotext_semibold</item>
+        <!-- Set title color -->
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+    <!-- Customize your theme here. -->
     <style name="TextSemibold" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/sfprotext_semibold</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
@@ -32,7 +35,7 @@
 
     <style name="RatingBarYellow" parent="Theme.AppCompat">
         <item name="android:progressBackgroundTint">@color/silver</item>
-        <item name="android:progressTint">@color/saffron</item>
+        <item name="android:progressTint">@color/yellow_orange</item>
         <item name="ratingBarStyle">@android:style/Widget.Holo.RatingBar.Indicator</item>
         <item name="android:scaleX">0.7</item>
         <item name="android:scaleY">0.7</item>
