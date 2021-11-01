@@ -10,12 +10,17 @@ import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class ShowViewModel extends ViewModel {
     private final MutableLiveData<List<ShowEntity>> showsList;
     private ShowRepository showRepository;
 
-    public ShowViewModel() {
-        showRepository = new ShowRepository();
+    @Inject
+    public ShowViewModel(ShowRepository showRepositoryI) {
+        showRepository = showRepositoryI;
         showsList = showRepository.getShowEntities();
     }
 

@@ -1,44 +1,32 @@
 package com.mendosal.tvmaze.data;
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.room.Room;
 
-import com.mendosal.tvmaze.MyApp;
-import com.mendosal.tvmaze.data.local.ShowRoomDatabase;
-import com.mendosal.tvmaze.data.local.dao.ShowDao;
-import com.mendosal.tvmaze.data.network.NetworkBoundResource;
-import com.mendosal.tvmaze.data.network.Resource;
-import com.mendosal.tvmaze.retrofit.ApiConstants;
-import com.mendosal.tvmaze.retrofit.RequestInterceptor;
 import com.mendosal.tvmaze.retrofit.ShowApiService;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
 
 import java.util.List;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ShowRepository {
 
     private final ShowApiService showApiService;
-    private final ShowDao showDao;
+    //private final ShowDao showDao;
     private List<ShowEntity> showEntities;
-    public ShowRepository() {
+
+    public ShowRepository(ShowApiService showService) {
         //Local > Room
-        ShowRoomDatabase showRoomDatabase = Room.databaseBuilder(
+        /*ShowRoomDatabase showRoomDatabase = Room.databaseBuilder(
                 MyApp.getContext(),
                 ShowRoomDatabase.class,
                 "db_shows"
         ).build();
-        showDao = showRoomDatabase.getShowDao();
+        showDao = showRoomDatabase.getShowDao();*/
 
         //Request interceptor
-        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+        /*OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.addInterceptor(new RequestInterceptor());
         OkHttpClient client = okHttpClientBuilder.build();
 
@@ -48,8 +36,8 @@ public class ShowRepository {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        showApiService = retrofit.create(ShowApiService.class);
+        */
+        showApiService = showService;
     }
 
     public MutableLiveData<List<ShowEntity>> getShowEntities() {
@@ -71,7 +59,7 @@ public class ShowRepository {
         return newsData;
     }
 
-    public LiveData<Resource<List<ShowEntity>>> getShows() {
+    /*public LiveData<Resource<List<ShowEntity>>> getShows() {
         return new NetworkBoundResource<List<ShowEntity>, List<ShowEntity>>(){
 
             @Override
@@ -92,5 +80,5 @@ public class ShowRepository {
                 return showApiService.getShow();
             }
         }.getAsLiveData();
-    }
+    }*/
 }

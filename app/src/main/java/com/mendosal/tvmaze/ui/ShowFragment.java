@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -18,12 +19,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.mendosal.tvmaze.R;
-import com.mendosal.tvmaze.data.network.Resource;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
 import com.mendosal.tvmaze.viewmodel.ShowViewModel;
 
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ShowFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -50,8 +53,7 @@ public class ShowFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
-        showViewModel = new ViewModelProvider(getActivity())
-                .get(ShowViewModel.class);
+        showViewModel = new ViewModelProvider(requireActivity()).get(ShowViewModel.class);
     }
 
     @Override
