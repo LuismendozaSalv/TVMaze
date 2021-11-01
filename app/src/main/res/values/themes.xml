@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/big_stone</item>
         <item name="colorPrimaryVariant">@color/black</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/alizarin_crimson</item>
         <item name="colorSecondaryVariant">@color/sangria</item>
@@ -30,7 +30,13 @@
     <style name="TextMedium" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/sfprotext_medium</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextRegular" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/sfprotext_regular</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="RatingBarYellow" parent="Theme.AppCompat">

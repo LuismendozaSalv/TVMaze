@@ -44,10 +44,120 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-        <LinearLayout
-            android:background="@color/bright_red"
-            android:layout_width="200dp"
-            android:layout_height="800dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGenres"
+                android:layout_width="0dp"
+                android:layout_marginTop="50dp"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/genre_item"
+                tools:itemCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constSummary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/rvGenres"
+                app:layout_constraintStart_toStartOf="@+id/rvGenres"
+                app:layout_constraintTop_toBottomOf="@+id/rvGenres">
+
+                <TextView
+                    android:id="@+id/tvSummaryTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Summary"
+                    android:textAppearance="@style/TextMedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="In this third installment of the adrenaline-fueled action franchise, super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting..."
+                    android:textAppearance="@style/TextRegular"
+                    app:layout_constraintEnd_toEndOf="@+id/tvSummaryTitle"
+                    app:layout_constraintStart_toStartOf="@+id/tvSummaryTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSummaryTitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constCast"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/constSummary"
+                app:layout_constraintLeft_toLeftOf="@+id/constSummary"
+                app:layout_constraintRight_toRightOf="@+id/constSummary">
+                <TextView
+                    android:id="@+id/tvCastTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Cast"
+                    android:textAppearance="@style/TextMedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCast"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/cast_item"
+                    tools:itemCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCastTitle"
+                    app:layout_constraintRight_toRightOf="@+id/tvCastTitle"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvCastTitle"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constPhotos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/constCast"
+                app:layout_constraintLeft_toLeftOf="@+id/constCast"
+                app:layout_constraintRight_toRightOf="@+id/constCast">
+                <TextView
+                    android:id="@+id/tvPhotoTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Photo"
+                    android:textAppearance="@style/TextMedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPhoto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/cast_item"
+                    tools:itemCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPhotoTitle"
+                    app:layout_constraintRight_toRightOf="@+id/tvPhotoTitle"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvPhotoTitle"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,47 +175,101 @@
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/const_rating"
+                android:id="@+id/constRating"
                 android:layout_width="114dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/const_status"
+                app:layout_constraintBottom_toBottomOf="@+id/constStatus"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/const_status">
+                app:layout_constraintTop_toTopOf="@+id/constStatus">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvRatingTitle"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:text="Rate"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:textAppearance="@style/TextMedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="3.5"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextRegular"
+                    app:layout_constraintEnd_toEndOf="@+id/tvRatingTitle"
+                    app:layout_constraintStart_toStartOf="@+id/tvRatingTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRatingTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/const_status"
+                android:id="@+id/constStatus"
                 android:layout_width="114dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/const_network"
-                app:layout_constraintStart_toEndOf="@+id/const_rating"
+                app:layout_constraintEnd_toStartOf="@+id/constNetwork"
+                app:layout_constraintStart_toEndOf="@+id/constRating"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvStatusTitle"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Status" />
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Status"
+                    android:textAppearance="@style/TextMedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Ended"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextRegular"
+                    app:layout_constraintEnd_toEndOf="@+id/tvStatusTitle"
+                    app:layout_constraintStart_toStartOf="@+id/tvStatusTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvStatusTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/const_network"
+                android:id="@+id/constNetwork"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/const_status"
+                app:layout_constraintBottom_toBottomOf="@+id/constStatus"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/const_status">
+                app:layout_constraintTop_toTopOf="@+id/constStatus">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvNetworkTitle"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Network" />
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Network"
+
+                    android:textAppearance="@style/TextMedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvNetwork"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Disney Channel"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextRegular"
+                    app:layout_constraintEnd_toEndOf="@+id/tvNetworkTitle"
+                    app:layout_constraintStart_toStartOf="@+id/tvNetworkTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNetworkTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
