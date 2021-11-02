@@ -27,9 +27,9 @@ public class ShowRepository {
         showApiService = showService;
     }
 
-    public MutableLiveData<List<ShowEntity>> getShowEntities() {
+    public MutableLiveData<List<ShowEntity>> getShowEntities(int page) {
         MutableLiveData<List<ShowEntity>> showsData = new MutableLiveData<>();
-        showApiService.getShowsByPage().enqueue(new Callback<List<ShowEntity>>() {
+        showApiService.getShowsByPage(page).enqueue(new Callback<List<ShowEntity>>() {
             @Override
             public void onResponse(Call<List<ShowEntity>> call, Response<List<ShowEntity>> response) {
                 if (response.isSuccessful()) {

@@ -15,16 +15,16 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class ShowViewModel extends ViewModel {
-    private final MutableLiveData<List<ShowEntity>> showsList;
+    private MutableLiveData<List<ShowEntity>> showsList;
     private ShowRepository showRepository;
 
     @Inject
     public ShowViewModel(ShowRepository showRepositoryI) {
         showRepository = showRepositoryI;
-        showsList = showRepository.getShowEntities();
     }
 
-    public LiveData<List<ShowEntity>> getShows() {
+    public LiveData<List<ShowEntity>> getShows(int page) {
+        showsList = showRepository.getShowEntities(page);
         return showsList;
     }
 }

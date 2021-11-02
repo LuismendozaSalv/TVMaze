@@ -16,6 +16,7 @@ public class EpisodeRepository {
     private final ShowApiService showApiService;
     //private final ShowDao showDao;
     private List<EpisodeEntity> episodeEntities;
+    private EpisodeEntity episodeEntity;
 
     public EpisodeRepository(ShowApiService showService) {
         //Local > Room
@@ -28,12 +29,39 @@ public class EpisodeRepository {
         showApiService = showService;
     }
 
-    public MutableLiveData<List<EpisodeEntity>> getShowEpisodes() {
-        MutableLiveData<List<EpisodeEntity>>episodesData = new MutableLiveData<>();
+    public MutableLiveData<List<EpisodeEntity>> getShowEpisodes(int showId) {
+        MutableLiveData<List<EpisodeEntity>> episodesData = new MutableLiveData<>();
+        showApiService.getEpisodes(showId).enqueue(new Callback<List<EpisodeEntity>>() {
+            @Override
+            public void onResponse(Call<List<EpisodeEntity>> call, Response<List<EpisodeEntity>> response) {
+                if (response.isSuccessful()) {
+                    episodesData.setValue(response.body());
+                }
+            }
 
-
+            @Override
+            public void onFailure(Call<List<EpisodeEntity>> call, Throwable t) {
+                episodesData.setValue(null);
+            }
+        });
         return episodesData;
     }
 
+    public MutableLiveData<EpisodeEntity> getShowEpisode(int showId, int seasonNumber, int episodeNumber) {
+        MutableLiveData<EpisodeEntity> episodeData = new MutableLiveData<>();
+        showApiService.getEpisode(showId, seasonNumber, episodeNumber).enqueue(new Callback<EpisodeEntity>() {
+            @Override
+            public void onResponse(Call<EpisodeEntity> call, Response<EpisodeEntity> response) {
+                if (response.isSuccessful()){
+                    episodeData.setValue(response.body());
+                }
+            }
 
+            @Override
+            public void onFailure(Call<EpisodeEntity> call, Throwable t) {
+                episodeData.setValue(null);
+            }
+        });
+        return episodeData;
+    }
 }

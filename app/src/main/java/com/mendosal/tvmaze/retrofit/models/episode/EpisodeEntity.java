@@ -7,6 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.mendosal.tvmaze.retrofit.models.shared.Links;
 import com.mendosal.tvmaze.retrofit.models.shared.Rating;
+import com.mendosal.tvmaze.retrofit.models.show.Image;
 
 @Entity(tableName = "episodes")
 public class EpisodeEntity {
@@ -41,16 +42,16 @@ public class EpisodeEntity {
     private String airstamp;
     @SerializedName("runtime")
     @Expose
-    private Object runtime;
+    private Integer runtime;
     @SerializedName("rating")
     @Expose
     private Rating rating;
     @SerializedName("image")
     @Expose
-    private Object image;
+    private Image image;
     @SerializedName("summary")
     @Expose
-    private Object summary;
+    private String summary;
     @SerializedName("_links")
     @Expose
     private Links links;
@@ -127,11 +128,11 @@ public class EpisodeEntity {
         this.airstamp = airstamp;
     }
 
-    public Object getRuntime() {
+    public Integer getRuntime() {
         return runtime;
     }
 
-    public void setRuntime(Object runtime) {
+    public void setRuntime(Integer runtime) {
         this.runtime = runtime;
     }
 
@@ -143,19 +144,19 @@ public class EpisodeEntity {
         this.rating = rating;
     }
 
-    public Object getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(Object image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
-    public Object getSummary() {
+    public String getSummary() {
         return summary;
     }
 
-    public void setSummary(Object summary) {
+    public void setSummary(String summary) {
         this.summary = summary;
     }
 

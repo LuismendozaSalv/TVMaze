@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.mendosal.tvmaze.R;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
@@ -35,6 +36,8 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
     MyShowRecyclerViewAdapter adapter;
     ShowViewModel showViewModel;
     private View fragmentView;
+    private RecyclerView rvShows;
+    private int actualPage = 0;
 
     public ShowFragment() {
     }
@@ -50,7 +53,6 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -64,21 +66,26 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
 
         // Set the adapter
         Context context = fragmentView.getContext();
-        RecyclerView recyclerView = fragmentView.findViewById(R.id.list);
+        rvShows = fragmentView.findViewById(R.id.list);
         if (mColumnCount <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            rvShows.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+            rvShows.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
         adapter = new MyShowRecyclerViewAdapter(getActivity(), showList, this);
-        recyclerView.setAdapter(adapter);
-        loadShows();
+        rvShows.setAdapter(adapter);
+        loadShows(actualPage);
+        initializeScrollListener();
         return fragmentView;
     }
 
-    private void loadShows() {
-        showViewModel.getShows().observe(getActivity(), showEntities -> {
-            showList = showEntities;
+    private void loadShows(int page) {
+        showViewModel.getShows(page).observe(getActivity(), showEntities -> {
+            if (showList == null){
+                showList = showEntities;
+            }else {
+                showList.addAll(showEntities);
+            }
             adapter.setShowList(showList);
         });
     }
@@ -90,5 +97,21 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
         ShowEntity selectedShow = showList.get(position);
         action.setShowId(selectedShow.getId());
         Navigation.findNavController(fragmentView).navigate(action);
+    }
+
+    private void initializeScrollListener() {
+        rvShows.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1) &&
+                        newState==RecyclerView.SCROLL_STATE_IDLE) {
+                    Toast.makeText(requireActivity(), "FInal", Toast.LENGTH_LONG).show();
+                    actualPage++;
+                    loadShows(actualPage);
+                }
+            }
+        });
     }
 }
