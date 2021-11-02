@@ -17,5 +17,10 @@
         android:id="@+id/showDetailFragment"
         android:name="com.mendosal.tvmaze.ui.ShowDetailFragment"
         android:label="fragment_show_detail"
-        tools:layout="@layout/fragment_show_detail" />
+        tools:layout="@layout/fragment_show_detail" >
+        <argument
+            android:name="showId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

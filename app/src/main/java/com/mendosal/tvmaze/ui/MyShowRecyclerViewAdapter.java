@@ -19,17 +19,19 @@ public class MyShowRecyclerViewAdapter extends RecyclerView.Adapter<MyShowRecycl
 
     private List<ShowEntity> mValues;
     Context ctx;
+    private OnShowListener mOnShowListener;
 
-    public MyShowRecyclerViewAdapter(Context context, List<ShowEntity> items) {
+    public MyShowRecyclerViewAdapter(Context context, List<ShowEntity> items, OnShowListener onShowListener) {
         mValues = items;
         ctx = context;
+        mOnShowListener = onShowListener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_show, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, mOnShowListener);
     }
 
     @Override
@@ -53,21 +55,33 @@ public class MyShowRecyclerViewAdapter extends RecyclerView.Adapter<MyShowRecycl
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final View mView;
         public final TextView tvTitle;
         public final ImageView ivPoster;
         public final RatingBar rbAverage;
         public final TextView tvGenres;
         public ShowEntity mItem;
+        OnShowListener onShowListener;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view, OnShowListener onShowListener) {
             super(view);
             mView = view;
             tvTitle = view.findViewById(R.id.tvShowTitle);
             ivPoster = view.findViewById(R.id.ivShowPoster);
             rbAverage = view.findViewById(R.id.rbAverage);
             tvGenres = view.findViewById(R.id.tvShowGenre);
+            this.onShowListener = onShowListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onShowListener.onShowClick(getAbsoluteAdapterPosition());
+        }
+    }
+
+    public interface OnShowListener {
+        void onShowClick(int position);
     }
 }

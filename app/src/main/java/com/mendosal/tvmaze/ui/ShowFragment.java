@@ -27,13 +27,14 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class ShowFragment extends Fragment {
+public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.OnShowListener {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 2;
     List<ShowEntity> showList;
     MyShowRecyclerViewAdapter adapter;
     ShowViewModel showViewModel;
+    private View fragmentView;
 
     public ShowFragment() {
     }
@@ -59,35 +60,35 @@ public class ShowFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_show_list, container, false);
+        fragmentView = inflater.inflate(R.layout.fragment_show_list, container, false);
 
         // Set the adapter
-        Button btn = view.findViewById(R.id.button2);
-        btn.setOnClickListener(view1 -> {
-            NavDirections action =
-                    ShowFragmentDirections.actionShowFragmentToShowDetailFragment();
-            Navigation.findNavController(view1).navigate(action);
-        });
-        Context context = view.getContext();
-        RecyclerView recyclerView = view.findViewById(R.id.list);
+        Context context = fragmentView.getContext();
+        RecyclerView recyclerView = fragmentView.findViewById(R.id.list);
         if (mColumnCount <= 1) {
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
         } else {
             recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
-        adapter = new MyShowRecyclerViewAdapter(getActivity(), showList);
+        adapter = new MyShowRecyclerViewAdapter(getActivity(), showList, this);
         recyclerView.setAdapter(adapter);
         loadShows();
-        return view;
+        return fragmentView;
     }
 
     private void loadShows() {
-        showViewModel.getShows().observe(getActivity(), new Observer<List<ShowEntity>>() {
-            @Override
-            public void onChanged(List<ShowEntity> showEntities) {
-                showList = showEntities;
-                adapter.setShowList(showList);
-            }
+        showViewModel.getShows().observe(getActivity(), showEntities -> {
+            showList = showEntities;
+            adapter.setShowList(showList);
         });
+    }
+
+    @Override
+    public void onShowClick(int position) {
+        ShowFragmentDirections.ActionShowFragmentToShowDetailFragment action =
+                ShowFragmentDirections.actionShowFragmentToShowDetailFragment();
+        ShowEntity selectedShow = showList.get(position);
+        action.setShowId(selectedShow.getId());
+        Navigation.findNavController(fragmentView).navigate(action);
     }
 }

@@ -24,39 +24,44 @@ public class ShowRepository {
                 "db_shows"
         ).build();
         showDao = showRoomDatabase.getShowDao();*/
-
-        //Request interceptor
-        /*OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
-        okHttpClientBuilder.addInterceptor(new RequestInterceptor());
-        OkHttpClient client = okHttpClientBuilder.build();
-
-        //Remote Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiConstants.BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        */
         showApiService = showService;
     }
 
     public MutableLiveData<List<ShowEntity>> getShowEntities() {
-        MutableLiveData<List<ShowEntity>> newsData = new MutableLiveData<>();
-        showApiService.getShow().enqueue(new Callback<List<ShowEntity>>() {
+        MutableLiveData<List<ShowEntity>> showsData = new MutableLiveData<>();
+        showApiService.getShowsByPage().enqueue(new Callback<List<ShowEntity>>() {
             @Override
             public void onResponse(Call<List<ShowEntity>> call, Response<List<ShowEntity>> response) {
                 if (response.isSuccessful()) {
-                    newsData.setValue(response.body());
+                    showsData.setValue(response.body());
                 }
             }
 
             @Override
             public void onFailure(Call<List<ShowEntity>> call, Throwable t) {
-                newsData.setValue(null);
+                showsData.setValue(null);
             }
         });
 
-        return newsData;
+        return showsData;
+    }
+
+    public MutableLiveData<ShowEntity> getShow(int showId) {
+        MutableLiveData<ShowEntity> showData = new MutableLiveData<>();
+        showApiService.getShow(showId).enqueue(new Callback<ShowEntity>() {
+            @Override
+            public void onResponse(Call<ShowEntity> call, Response<ShowEntity> response) {
+                if (response.isSuccessful()) {
+                    showData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ShowEntity> call, Throwable t) {
+
+            }
+        });
+        return showData;
     }
 
     /*public LiveData<Resource<List<ShowEntity>>> getShows() {

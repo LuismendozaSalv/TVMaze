@@ -1,5 +1,7 @@
 package com.mendosal.tvmaze.di;
 
+import com.mendosal.tvmaze.data.EpisodeRepository;
+import com.mendosal.tvmaze.data.SeasonRepository;
 import com.mendosal.tvmaze.data.ShowRepository;
 import com.mendosal.tvmaze.retrofit.ShowApiService;
 
@@ -19,5 +21,17 @@ public class RepositoryModule {
     @Provides
     public ShowRepository provideShowRepository(ShowApiService showApiService) {
         return new ShowRepository(showApiService);
+    }
+
+    @Singleton
+    @Provides
+    public SeasonRepository provideSeasonRepository(ShowApiService showApiService) {
+        return new SeasonRepository(showApiService);
+    }
+
+    @Singleton
+    @Provides
+    public EpisodeRepository provideEpisodeRepository(ShowApiService showApiService) {
+        return new EpisodeRepository(showApiService);
     }
 }

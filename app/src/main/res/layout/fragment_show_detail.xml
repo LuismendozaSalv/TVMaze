@@ -25,6 +25,7 @@
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <ImageView
+                android:id="@+id/ivPoster"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 tools:srcCompat="@tools:sample/backgrounds/scenic"
@@ -82,7 +83,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/tvSummary"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -162,17 +163,23 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_height="100dp"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="end|bottom"
         android:background="@drawable/card_show_detail"
         android:elevation="4dp"
-        >
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="end|bottom">
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_margin="16dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constRating"
