@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mendosal.tvmaze.R;
@@ -40,6 +41,7 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
     private RecyclerView rvShows;
     private int actualPage = 0;
     private ProgressBar pbShows;
+    private TextView tvMessage;
 
     public ShowFragment() {
     }
@@ -73,6 +75,8 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
         svShows.setOnQueryTextListener(this);
         Context context = fragmentView.getContext();
         rvShows = fragmentView.findViewById(R.id.rvShows);
+        tvMessage = fragmentView.findViewById(R.id.tvMessage);
+
         if (mColumnCount <= 1) {
             rvShows.setLayoutManager(new LinearLayoutManager(context));
         } else {
@@ -135,11 +139,15 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
     }
 
     private void searchShowsByName(String name) {
+        tvMessage.setVisibility(View.GONE);
         if (name.length() > 0) {
             showViewModel.searchShow(name).observe(requireActivity(), scoreShows -> {
                 List<ShowEntity> searchedShowList =
                         showViewModel.getShowsListFromSearch(scoreShows);
                 adapter.setShowList(searchedShowList);
+                if (searchedShowList.isEmpty()) {
+                    tvMessage.setVisibility(View.VISIBLE);
+                }
             });
         }else {
             if(searchShowList != null) {

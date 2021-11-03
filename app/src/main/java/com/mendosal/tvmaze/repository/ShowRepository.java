@@ -1,9 +1,15 @@
 package com.mendosal.tvmaze.repository;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.mendosal.tvmaze.repository.local.ShowRoomDatabase;
+import com.mendosal.tvmaze.repository.local.dao.ShowDao;
 import com.mendosal.tvmaze.retrofit.ShowApiService;
 import com.mendosal.tvmaze.retrofit.models.show.ScoreShow;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
+import com.mendosal.tvmaze.retrofit.network.NetworkBoundResource;
+import com.mendosal.tvmaze.retrofit.network.Resource;
 
 import java.util.List;
 
@@ -14,17 +20,13 @@ import retrofit2.Response;
 public class ShowRepository {
 
     private final ShowApiService showApiService;
-    //private final ShowDao showDao;
+    private final ShowDao showDao;
     private List<ShowEntity> showEntities;
 
-    public ShowRepository(ShowApiService showService) {
+    public ShowRepository(ShowApiService showService, ShowRoomDatabase showRoomDatabase) {
         //Local > Room
-        /*ShowRoomDatabase showRoomDatabase = Room.databaseBuilder(
-                MyApp.getContext(),
-                ShowRoomDatabase.class,
-                "db_shows"
-        ).build();
-        showDao = showRoomDatabase.getShowDao();*/
+
+        showDao = showRoomDatabase.getShowDao();
         showApiService = showService;
     }
 
@@ -83,13 +85,12 @@ public class ShowRepository {
         return searchedData;
     }
 
-    /*public LiveData<Resource<List<ShowEntity>>> getShows() {
-        return new NetworkBoundResource<List<ShowEntity>, List<ShowEntity>>(){
+    public LiveData<Resource<List<ShowEntity>>> saveFavoriteShow(int showId) {
+        return new NetworkBoundResource<List<ShowEntity>, ShowEntity>(){
 
             @Override
-            protected void saveCallResult(@NonNull List<ShowEntity> item) {
-                showEntities = item;
-                showDao.saveFavoriteShows(item);
+            protected void saveCallResult(@NonNull ShowEntity item) {
+                showDao.saveFavoriteShow(item);
             }
 
             @NonNull
@@ -100,9 +101,9 @@ public class ShowRepository {
 
             @NonNull
             @Override
-            protected Call<List<ShowEntity>> createCall() {
-                return showApiService.getShow();
+            protected Call<ShowEntity> createCall() {
+                return showApiService.getShow(showId);
             }
         }.getAsLiveData();
-    }*/
+    }
 }

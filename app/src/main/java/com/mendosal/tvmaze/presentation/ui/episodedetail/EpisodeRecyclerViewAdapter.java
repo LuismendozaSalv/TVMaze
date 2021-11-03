@@ -40,15 +40,17 @@ public class EpisodeRecyclerViewAdapter extends RecyclerView.Adapter<EpisodeRecy
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.tvName.setText(holder.mItem.getName());
-        holder.tvDuration.setText(holder.mItem.getAirdate());
         int runtime = holder.mItem.getRuntime() != null ? holder.mItem.getRuntime() : 0;
         String runtimeString = runtime > 0 ? runtime + "m" : "-";
-        holder.tvSummary.setText(runtimeString);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            holder.tvSummary.setText(Html.fromHtml(holder.mItem.getSummary(), Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            holder.tvSummary.setText(Html.fromHtml(holder.mItem.getSummary()));
+        holder.tvDuration.setText(runtimeString);
+        if (holder.mItem.getSummary() != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                holder.tvSummary.setText(Html.fromHtml(holder.mItem.getSummary(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                holder.tvSummary.setText(Html.fromHtml(holder.mItem.getSummary()));
+            }
         }
+        holder.ivPhoto.setImageResource(R.drawable.no_image_available);
         if (holder.mItem.getImage() != null) {
             Glide.with(ctx)
                     .load(holder.mItem.getImage().getMedium())

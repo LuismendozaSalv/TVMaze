@@ -73,6 +73,7 @@ public class EpisodeDetailFragment extends Fragment {
     }
 
     private void selectedEpisodeInfo() {
+        ivEpisodePhoto.setImageResource(R.drawable.no_image_available);
         if (episode.getImage() != null) {
             Glide.with(requireActivity())
                     .load(episode.getImage().getMedium())
@@ -80,10 +81,14 @@ public class EpisodeDetailFragment extends Fragment {
         }
         String seasonEpisode = "Season " + episode.getSeason() + ", Episode " + episode.getNumber();
         tvSeasonEpisode.setText(seasonEpisode);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            tvSummaryEpisode.setText(Html.fromHtml(episode.getSummary(), Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            tvSummaryEpisode.setText(Html.fromHtml(episode.getSummary()));
+        if (episode.getSummary() != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tvSummaryEpisode.setText(Html.fromHtml(episode.getSummary(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tvSummaryEpisode.setText(Html.fromHtml(episode.getSummary()));
+            }
+        }else {
+            tvSummaryEpisode.setText("-");
         }
         tvEpisodeTitle.setText(episode.getName());
     }

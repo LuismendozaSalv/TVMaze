@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.mendosal.tvmaze.repository.ShowRepository;
 import com.mendosal.tvmaze.retrofit.models.show.ScoreShow;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
+import com.mendosal.tvmaze.retrofit.network.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +46,9 @@ public class ShowViewModel extends ViewModel {
             }
         }
         return showEntityList;
+    }
+
+    public LiveData<Resource<List<ShowEntity>>> saveFavoriteShow(int showId) {
+        return showRepository.saveFavoriteShow(showId);
     }
 }

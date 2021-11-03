@@ -3,6 +3,7 @@ package com.mendosal.tvmaze.di;
 import com.mendosal.tvmaze.repository.EpisodeRepository;
 import com.mendosal.tvmaze.repository.SeasonRepository;
 import com.mendosal.tvmaze.repository.ShowRepository;
+import com.mendosal.tvmaze.repository.local.ShowRoomDatabase;
 import com.mendosal.tvmaze.retrofit.ShowApiService;
 
 import javax.inject.Singleton;
@@ -18,8 +19,8 @@ public class RepositoryModule {
 
     @Singleton
     @Provides
-    public ShowRepository provideShowRepository(ShowApiService showApiService) {
-        return new ShowRepository(showApiService);
+    public ShowRepository provideShowRepository(ShowApiService showApiService, ShowRoomDatabase showRoomDatabase) {
+        return new ShowRepository(showApiService, showRoomDatabase);
     }
 
     @Singleton
