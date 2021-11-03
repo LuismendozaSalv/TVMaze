@@ -1,4 +1,4 @@
-package com.mendosal.tvmaze.data.network;
+package com.mendosal.tvmaze.retrofit.network;
 
 /*
  * Copyright (C) 2017 The Android Open Source Project

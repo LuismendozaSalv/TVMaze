@@ -6,16 +6,37 @@
     app:startDestination="@id/showFragment">
     <fragment
         android:id="@+id/showFragment"
-        android:name="com.mendosal.tvmaze.ui.ShowFragment"
-        android:label="fragment_show_list"
-        tools:layout="@layout/fragment_show_list" >
+        android:name="com.mendosal.tvmaze.presentation.ui.show.ShowFragment"
+        tools:layout="@layout/fragment_show_list">
         <action
             android:id="@+id/action_showFragment_to_showDetailFragment"
             app:destination="@id/showDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/showDetailFragment"
-        android:name="com.mendosal.tvmaze.ui.ShowDetailFragment"
-        android:label="fragment_show_detail"
-        tools:layout="@layout/fragment_show_detail" />
+        android:name="com.mendosal.tvmaze.presentation.ui.showdetail.ShowDetailFragment"
+        tools:layout="@layout/fragment_show_detail">
+        <argument
+            android:name="showId"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_showDetailFragment_to_episodeDetailFragment"
+            app:destination="@id/episodeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="com.mendosal.tvmaze.presentation.ui.episodedetail.EpisodeDetailFragment"
+        tools:layout="@layout/fragment_episode_detail" >
+        <argument
+            android:name="episodeNumber"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument android:name="seasonNumber"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument android:name="showId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

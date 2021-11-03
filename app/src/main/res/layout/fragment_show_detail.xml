@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    tools:context=".ui.ShowDetailFragment">
+    tools:context=".presentation.ui.showdetail.ShowDetailFragment">
     
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -25,17 +25,11 @@
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <ImageView
+                android:id="@+id/ivPoster"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                tools:srcCompat="@tools:sample/backgrounds/scenic"
-                app:layout_collapseMode="parallax"/>
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                />
+                app:layout_collapseMode="parallax"
+                tools:srcCompat="@drawable/no_image_available" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -82,7 +76,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/tvSummary"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -95,44 +89,45 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constCast"
+                android:id="@+id/constSchedule"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/constSummary"
                 app:layout_constraintLeft_toLeftOf="@+id/constSummary"
                 app:layout_constraintRight_toRightOf="@+id/constSummary">
                 <TextView
-                    android:id="@+id/tvCastTitle"
+                    android:id="@+id/tvScheduleTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Cast"
+                    android:text="Schedule"
                     android:textAppearance="@style/TextMedium"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCast"
+                    android:id="@+id/rvSchedule"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/cast_item"
-                    tools:itemCount="2"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCastTitle"
-                    app:layout_constraintRight_toRightOf="@+id/tvCastTitle"
-                    app:layout_constraintLeft_toLeftOf="@+id/tvCastTitle"/>
+                    app:layout_constraintLeft_toLeftOf="@+id/tvScheduleTitle"
+                    app:layout_constraintRight_toRightOf="@+id/tvScheduleTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvScheduleTitle"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/schedule_item" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constPhotos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/constCast"
-                app:layout_constraintLeft_toLeftOf="@+id/constCast"
-                app:layout_constraintRight_toRightOf="@+id/constCast">
+                app:layout_constraintTop_toBottomOf="@+id/constSchedule"
+                app:layout_constraintLeft_toLeftOf="@+id/constSchedule"
+                app:layout_constraintRight_toRightOf="@+id/constSchedule">
                 <TextView
                     android:id="@+id/tvPhotoTitle"
                     android:layout_width="0dp"
@@ -157,22 +152,71 @@
                     app:layout_constraintRight_toRightOf="@+id/tvPhotoTitle"
                     app:layout_constraintLeft_toLeftOf="@+id/tvPhotoTitle"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constEpisodes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/constPhotos"
+                app:layout_constraintLeft_toLeftOf="@+id/constPhotos"
+                app:layout_constraintRight_toRightOf="@+id/constPhotos">
+
+                <TextView
+                    android:id="@+id/tvEpisodesTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Episodes"
+                    android:textAppearance="@style/TextMedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinSeasons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvEpisodesTitle"
+                    app:layout_constraintRight_toRightOf="@+id/tvEpisodesTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEpisodesTitle" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvEpisodes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="@+id/spinSeasons"
+                    app:layout_constraintRight_toRightOf="@+id/spinSeasons"
+                    app:layout_constraintTop_toBottomOf="@+id/spinSeasons"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/episode_item" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_height="100dp"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="end|bottom"
         android:background="@drawable/card_show_detail"
         android:elevation="4dp"
-        >
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="end|bottom">
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_margin="16dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constRating"

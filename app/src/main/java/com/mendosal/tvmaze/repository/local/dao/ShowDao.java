@@ -1,4 +1,4 @@
-package com.mendosal.tvmaze.data.local.dao;
+package com.mendosal.tvmaze.repository.local.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
