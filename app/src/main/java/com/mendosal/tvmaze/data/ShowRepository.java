@@ -2,6 +2,7 @@ package com.mendosal.tvmaze.data;
 import androidx.lifecycle.MutableLiveData;
 
 import com.mendosal.tvmaze.retrofit.ShowApiService;
+import com.mendosal.tvmaze.retrofit.models.show.ScoreShow;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
 
 import java.util.List;
@@ -62,6 +63,24 @@ public class ShowRepository {
             }
         });
         return showData;
+    }
+
+    public MutableLiveData<List<ScoreShow>> searchShow(String q) {
+        MutableLiveData<List<ScoreShow>> searchedData = new MutableLiveData<>();
+        showApiService.searchShow(q).enqueue(new Callback<List<ScoreShow>>() {
+            @Override
+            public void onResponse(Call<List<ScoreShow>> call, Response<List<ScoreShow>> response) {
+                if (response.isSuccessful()) {
+                    searchedData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ScoreShow>> call, Throwable t) {
+                searchedData.setValue(null);
+            }
+        });
+        return searchedData;
     }
 
     /*public LiveData<Resource<List<ShowEntity>>> getShows() {

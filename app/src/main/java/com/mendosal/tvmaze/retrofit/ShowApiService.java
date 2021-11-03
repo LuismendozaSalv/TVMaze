@@ -2,6 +2,7 @@ package com.mendosal.tvmaze.retrofit;
 
 import com.mendosal.tvmaze.retrofit.models.episode.EpisodeEntity;
 import com.mendosal.tvmaze.retrofit.models.season.SeasonEntity;
+import com.mendosal.tvmaze.retrofit.models.show.ScoreShow;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
 
 import java.util.List;
@@ -29,4 +30,7 @@ public interface ShowApiService {
     Call<EpisodeEntity> getEpisode(@Path("showId") int showId,
                                    @Query("season") int season,
                                    @Query("number") int number);
+
+    @GET("search/shows")
+    Call<List<ScoreShow>> searchShow(@Query("q") String q);
 }

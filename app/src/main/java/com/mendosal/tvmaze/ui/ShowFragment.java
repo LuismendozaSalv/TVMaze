@@ -3,11 +3,10 @@ package com.mendosal.tvmaze.ui;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,10 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.mendosal.tvmaze.R;
+import com.mendosal.tvmaze.retrofit.models.show.ScoreShow;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
 import com.mendosal.tvmaze.viewmodel.ShowViewModel;
 
@@ -28,14 +28,17 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.OnShowListener {
+public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.OnShowListener,
+        SearchView.OnQueryTextListener {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 2;
-    List<ShowEntity> showList;
-    MyShowRecyclerViewAdapter adapter;
-    ShowViewModel showViewModel;
+    private List<ShowEntity> showList;
+    private List<ShowEntity> searchShowList;
+    private MyShowRecyclerViewAdapter adapter;
+    private ShowViewModel showViewModel;
     private View fragmentView;
+    private SearchView svShows;
     private RecyclerView rvShows;
     private int actualPage = 0;
 
@@ -63,10 +66,12 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_show_list, container, false);
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name));
         // Set the adapter
+        svShows = fragmentView.findViewById(R.id.svShows);
+        svShows.setOnQueryTextListener(this);
         Context context = fragmentView.getContext();
-        rvShows = fragmentView.findViewById(R.id.list);
+        rvShows = fragmentView.findViewById(R.id.rvShows);
         if (mColumnCount <= 1) {
             rvShows.setLayoutManager(new LinearLayoutManager(context));
         } else {
@@ -94,7 +99,7 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
     public void onShowClick(int position) {
         ShowFragmentDirections.ActionShowFragmentToShowDetailFragment action =
                 ShowFragmentDirections.actionShowFragmentToShowDetailFragment();
-        ShowEntity selectedShow = showList.get(position);
+        ShowEntity selectedShow = adapter.getCurrentList().get(position);
         action.setShowId(selectedShow.getId());
         Navigation.findNavController(fragmentView).navigate(action);
     }
@@ -113,5 +118,32 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        searchShowsByName(s);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        searchShowsByName(s);
+        return false;
+    }
+
+    private void searchShowsByName(String name) {
+        if (name.length() > 0) {
+            showViewModel.searchShow(name).observe(requireActivity(), scoreShows -> {
+                List<ShowEntity> searchedShowList =
+                        showViewModel.getShowsListFromSearch(scoreShows);
+                adapter.setShowList(searchedShowList);
+            });
+        }else {
+            if(searchShowList != null) {
+                searchShowList.clear();
+            }
+            adapter.setShowList(showList);
+        }
     }
 }

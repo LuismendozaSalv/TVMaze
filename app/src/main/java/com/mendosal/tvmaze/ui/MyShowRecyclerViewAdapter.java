@@ -38,11 +38,15 @@ public class MyShowRecyclerViewAdapter extends RecyclerView.Adapter<MyShowRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.tvTitle.setText(holder.mItem.getName());
-        holder.rbAverage.setRating(holder.mItem.getRating().getAverage());
+        float averageRating = holder.mItem.getRating() != null ?
+                holder.mItem.getRating().getAverage() : 0;
+        holder.rbAverage.setRating(averageRating);
         holder.tvGenres.setText(holder.mItem.getGenres().toString());
-        Glide.with(ctx)
-                .load(holder.mItem.getImage().getMedium())
-                .into(holder.ivPoster);
+        if (holder.mItem.getImage() != null) {
+            Glide.with(ctx)
+                    .load(holder.mItem.getImage().getMedium())
+                    .into(holder.ivPoster);
+        }
     }
 
     @Override
@@ -53,6 +57,10 @@ public class MyShowRecyclerViewAdapter extends RecyclerView.Adapter<MyShowRecycl
     public void setShowList(List<ShowEntity> showList) {
         mValues = showList;
         notifyDataSetChanged();
+    }
+
+    public List<ShowEntity> getCurrentList() {
+        return mValues;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
