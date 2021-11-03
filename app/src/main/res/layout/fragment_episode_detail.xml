@@ -25,7 +25,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic" />
+                tools:src="@drawable/no_image_available" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constSeasonEpisode"

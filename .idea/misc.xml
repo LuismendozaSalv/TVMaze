@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/drawable/card_show_detail.xml" value="0.16614583333333333" />
         <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/cast_item.xml" value="0.12291666666666666" />
         <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/episode_item.xml" value="0.4" />
         <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/fragment_episode_detail.xml" value="0.264" />
         <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/fragment_show.xml" value="0.12291666666666666" />
         <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/fragment_show_detail.xml" value="0.484375" />
-        <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/fragment_show_list.xml" value="0.4" />
+        <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/fragment_show_list.xml" value="0.176" />
         <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/genre_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/photo_item.xml" value="0.15" />
         <entry key="..\:/Users/Diandra/AndroidStudioProjects/TVMaze/app/src/main/res/layout/schedule_item.xml" value="0.4" />
       </map>
     </option>

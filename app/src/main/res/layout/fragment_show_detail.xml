@@ -28,8 +28,8 @@
                 android:id="@+id/ivPoster"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                tools:srcCompat="@tools:sample/backgrounds/scenic"
-                app:layout_collapseMode="parallax"/>
+                app:layout_collapseMode="parallax"
+                tools:srcCompat="@drawable/no_image_available" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

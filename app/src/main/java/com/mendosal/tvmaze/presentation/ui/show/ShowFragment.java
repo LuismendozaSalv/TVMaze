@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
     private SearchView svShows;
     private RecyclerView rvShows;
     private int actualPage = 0;
+    private ProgressBar pbShows;
 
     public ShowFragment() {
     }
@@ -65,6 +67,8 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
         fragmentView = inflater.inflate(R.layout.fragment_show_list, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name));
         // Set the adapter
+        pbShows = fragmentView.findViewById(R.id.pbShows);
+        pbShows.setVisibility(View.VISIBLE);
         svShows = fragmentView.findViewById(R.id.svShows);
         svShows.setOnQueryTextListener(this);
         Context context = fragmentView.getContext();
@@ -89,6 +93,7 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
                 showList.addAll(showEntities);
             }
             adapter.setShowList(showList);
+            pbShows.setVisibility(View.GONE);
         });
     }
 
