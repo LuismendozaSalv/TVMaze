@@ -1,4 +1,4 @@
-package com.mendosal.tvmaze.data.network;
+package com.mendosal.tvmaze.retrofit.network;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

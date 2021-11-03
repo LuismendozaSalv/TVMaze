@@ -1,11 +1,10 @@
-package com.mendosal.tvmaze.ui;
+package com.mendosal.tvmaze.presentation.ui.show;
 
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,9 +18,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.mendosal.tvmaze.R;
-import com.mendosal.tvmaze.retrofit.models.show.ScoreShow;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
-import com.mendosal.tvmaze.viewmodel.ShowViewModel;
 
 import java.util.List;
 

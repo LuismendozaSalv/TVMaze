@@ -1,6 +1,5 @@
-package com.mendosal.tvmaze.ui;
+package com.mendosal.tvmaze.presentation.ui.showdetail;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

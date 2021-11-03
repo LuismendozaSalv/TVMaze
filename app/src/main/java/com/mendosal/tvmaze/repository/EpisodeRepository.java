@@ -1,9 +1,8 @@
-package com.mendosal.tvmaze.data;
+package com.mendosal.tvmaze.repository;
 import androidx.lifecycle.MutableLiveData;
 
 import com.mendosal.tvmaze.retrofit.ShowApiService;
 import com.mendosal.tvmaze.retrofit.models.episode.EpisodeEntity;
-import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
 
 import java.util.List;
 

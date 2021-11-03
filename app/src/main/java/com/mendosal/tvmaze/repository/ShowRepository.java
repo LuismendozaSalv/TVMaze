@@ -1,4 +1,4 @@
-package com.mendosal.tvmaze.data;
+package com.mendosal.tvmaze.repository;
 import androidx.lifecycle.MutableLiveData;
 
 import com.mendosal.tvmaze.retrofit.ShowApiService;

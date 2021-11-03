@@ -1,4 +1,4 @@
-package com.mendosal.tvmaze.ui;
+package com.mendosal.tvmaze.presentation.ui.showdetail;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -26,11 +26,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mendosal.tvmaze.R;
+import com.mendosal.tvmaze.presentation.ui.episodedetail.EpisodeRecyclerViewAdapter;
 import com.mendosal.tvmaze.retrofit.models.episode.EpisodeEntity;
 import com.mendosal.tvmaze.retrofit.models.show.DayTime;
 import com.mendosal.tvmaze.retrofit.models.show.Schedule;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
-import com.mendosal.tvmaze.viewmodel.ShowDetailViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

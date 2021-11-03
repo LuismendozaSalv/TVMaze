@@ -1,4 +1,4 @@
-package com.mendosal.tvmaze;
+package com.mendosal.tvmaze.presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -6,6 +6,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+
+import com.mendosal.tvmaze.R;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

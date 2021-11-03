@@ -1,14 +1,11 @@
-package com.mendosal.tvmaze.viewmodel;
+package com.mendosal.tvmaze.presentation.ui.showdetail;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.mendosal.tvmaze.data.EpisodeRepository;
-import com.mendosal.tvmaze.data.ShowRepository;
+import com.mendosal.tvmaze.repository.EpisodeRepository;
+import com.mendosal.tvmaze.repository.ShowRepository;
 import com.mendosal.tvmaze.retrofit.models.episode.EpisodeEntity;
 import com.mendosal.tvmaze.retrofit.models.show.DayTime;
 import com.mendosal.tvmaze.retrofit.models.show.Schedule;
@@ -16,8 +13,6 @@ import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.stream.Collectors;
-import java.util.stream.Collectors.*;
 
 import java.util.List;
 import java.util.Map;

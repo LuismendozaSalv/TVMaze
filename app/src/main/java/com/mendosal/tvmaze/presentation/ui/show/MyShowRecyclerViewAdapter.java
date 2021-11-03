@@ -1,4 +1,4 @@
-package com.mendosal.tvmaze.ui;
+package com.mendosal.tvmaze.presentation.ui.show;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;

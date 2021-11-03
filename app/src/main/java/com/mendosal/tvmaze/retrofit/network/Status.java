@@ -1,4 +1,4 @@
-package com.mendosal.tvmaze.data.network;
+package com.mendosal.tvmaze.retrofit.network;
 
 /**
  * Status of a resource that is provided to the UI.

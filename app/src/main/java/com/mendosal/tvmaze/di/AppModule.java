@@ -1,9 +1,8 @@
 package com.mendosal.tvmaze.di;
 
-import android.app.Application;
 import android.content.Context;
 
-import com.mendosal.tvmaze.BaseApp;
+import com.mendosal.tvmaze.presentation.BaseApp;
 
 import javax.inject.Singleton;
 

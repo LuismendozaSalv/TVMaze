@@ -1,18 +1,11 @@
-package com.mendosal.tvmaze.viewmodel;
+package com.mendosal.tvmaze.presentation.ui.episodedetail;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.mendosal.tvmaze.data.EpisodeRepository;
-import com.mendosal.tvmaze.data.ShowRepository;
+import com.mendosal.tvmaze.repository.EpisodeRepository;
 import com.mendosal.tvmaze.retrofit.models.episode.EpisodeEntity;
-import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 

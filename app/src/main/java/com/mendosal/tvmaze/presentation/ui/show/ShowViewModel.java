@@ -1,10 +1,10 @@
-package com.mendosal.tvmaze.viewmodel;
+package com.mendosal.tvmaze.presentation.ui.show;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.mendosal.tvmaze.data.ShowRepository;
+import com.mendosal.tvmaze.repository.ShowRepository;
 import com.mendosal.tvmaze.retrofit.models.show.ScoreShow;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
 

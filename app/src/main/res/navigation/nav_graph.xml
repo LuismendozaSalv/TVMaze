@@ -6,7 +6,7 @@
     app:startDestination="@id/showFragment">
     <fragment
         android:id="@+id/showFragment"
-        android:name="com.mendosal.tvmaze.ui.ShowFragment"
+        android:name="com.mendosal.tvmaze.presentation.ui.show.ShowFragment"
         tools:layout="@layout/fragment_show_list">
         <action
             android:id="@+id/action_showFragment_to_showDetailFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/showDetailFragment"
-        android:name="com.mendosal.tvmaze.ui.ShowDetailFragment"
+        android:name="com.mendosal.tvmaze.presentation.ui.showdetail.ShowDetailFragment"
         tools:layout="@layout/fragment_show_detail">
         <argument
             android:name="showId"
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/episodeDetailFragment"
-        android:name="com.mendosal.tvmaze.ui.EpisodeDetailFragment"
+        android:name="com.mendosal.tvmaze.presentation.ui.episodedetail.EpisodeDetailFragment"
         tools:layout="@layout/fragment_episode_detail" >
         <argument
             android:name="episodeNumber"

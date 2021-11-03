@@ -1,4 +1,4 @@
-package com.mendosal.tvmaze;
+package com.mendosal.tvmaze.presentation;
 
 import android.app.Application;
 import dagger.hilt.android.HiltAndroidApp;

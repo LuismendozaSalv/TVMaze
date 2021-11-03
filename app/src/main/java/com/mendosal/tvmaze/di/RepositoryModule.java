@@ -1,8 +1,8 @@
 package com.mendosal.tvmaze.di;
 
-import com.mendosal.tvmaze.data.EpisodeRepository;
-import com.mendosal.tvmaze.data.SeasonRepository;
-import com.mendosal.tvmaze.data.ShowRepository;
+import com.mendosal.tvmaze.repository.EpisodeRepository;
+import com.mendosal.tvmaze.repository.SeasonRepository;
+import com.mendosal.tvmaze.repository.ShowRepository;
 import com.mendosal.tvmaze.retrofit.ShowApiService;
 
 import javax.inject.Singleton;
@@ -10,7 +10,6 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.internal.managers.ApplicationComponentManager;
 import dagger.hilt.components.SingletonComponent;
 
 @Module
