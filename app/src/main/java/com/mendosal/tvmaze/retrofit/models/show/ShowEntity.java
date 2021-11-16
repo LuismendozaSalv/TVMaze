@@ -1,9 +1,11 @@
 package com.mendosal.tvmaze.retrofit.models.show;
 
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -29,10 +31,9 @@ public class ShowEntity {
     @SerializedName("language")
     @Expose
     private String language;
-    @Ignore
     @SerializedName("genres")
     @Expose
-    private List<String> genres = null;
+    private ArrayList<String> genres;
     @SerializedName("status")
     @Expose
     private String status;
@@ -55,10 +56,9 @@ public class ShowEntity {
     @SerializedName("schedule")
     @Expose
     private Schedule schedule;
-    @Ignore
     @SerializedName("rating")
     @Expose
-    private Rating rating;
+    @Embedded private Rating rating;
     @SerializedName("weight")
     @Expose
     private int weight;
@@ -78,10 +78,9 @@ public class ShowEntity {
     @SerializedName("externals")
     @Expose
     private Externals externals;
-    @Ignore
     @SerializedName("image")
     @Expose
-    private Image image;
+    @Embedded private Image image;
     @SerializedName("summary")
     @Expose
     private String summary;
@@ -134,11 +133,11 @@ public class ShowEntity {
         this.language = language;
     }
 
-    public List<String> getGenres() {
+    public ArrayList<String> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<String> genres) {
+    public void setGenres(ArrayList<String> genres) {
         this.genres = genres;
     }
 

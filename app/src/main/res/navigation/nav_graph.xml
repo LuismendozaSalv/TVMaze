@@ -39,4 +39,12 @@
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.mendosal.tvmaze.presentation.ui.favorite.FavoriteFragment"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_showDetailFragment"
+            app:destination="@id/showDetailFragment" />
+    </fragment>
 </navigation>

@@ -40,7 +40,7 @@ public class MyShowRecyclerViewAdapter extends RecyclerView.Adapter<MyShowRecycl
         holder.tvTitle.setText(holder.mItem.getName());
         float averageRating = holder.mItem.getRating() != null ?
                 holder.mItem.getRating().getAverage() : 0;
-        holder.rbAverage.setRating(averageRating);
+        holder.rbAverage.setRating(averageRating / 2);
         holder.tvGenres.setText(holder.mItem.getGenres().toString());
         if (holder.mItem.getImage() != null) {
             Glide.with(ctx)

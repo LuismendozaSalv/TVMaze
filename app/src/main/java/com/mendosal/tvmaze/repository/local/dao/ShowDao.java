@@ -16,9 +16,13 @@ public interface ShowDao {
     @Query("SELECT * FROM shows")
     LiveData<List<ShowEntity>> loadFavoriteShows();
 
+    @Query("SELECT * FROM shows where id = :showId")
+    LiveData<ShowEntity> loadFavoriteShow(int showId);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveFavoriteShow(ShowEntity show);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveFavoriteShows(List<ShowEntity> show);
+
 }

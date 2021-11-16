@@ -48,7 +48,7 @@ public class ShowViewModel extends ViewModel {
         return showEntityList;
     }
 
-    public LiveData<Resource<List<ShowEntity>>> saveFavoriteShow(int showId) {
+    public LiveData<Resource<ShowEntity>> saveFavoriteShow(int showId) {
         return showRepository.saveFavoriteShow(showId);
     }
 }

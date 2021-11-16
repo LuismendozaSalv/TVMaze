@@ -141,7 +141,7 @@ public class ShowDetailFragment extends Fragment implements
             @Override
             public void onChanged(List<EpisodeEntity> episodeEntities) {
                 episodesList = episodeEntities;
-                if (episodesList != null) {
+                if (episodesList != null && episodesList.size() > 0) {
                     episodesPerSeason =
                             showDetailViewModel.getEpisodesPerSeason(episodesList);
                     loadSeasonsSpinner();

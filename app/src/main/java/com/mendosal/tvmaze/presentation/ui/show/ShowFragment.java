@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.mendosal.tvmaze.R;
 import com.mendosal.tvmaze.retrofit.models.show.ShowEntity;
+import com.mendosal.tvmaze.retrofit.network.Resource;
 
 import java.util.List;
 
@@ -108,6 +110,12 @@ public class ShowFragment extends Fragment implements MyShowRecyclerViewAdapter.
         ShowEntity selectedShow = adapter.getCurrentList().get(position);
         action.setShowId(selectedShow.getId());
         Navigation.findNavController(fragmentView).navigate(action);
+        showViewModel.saveFavoriteShow(selectedShow.getId()).observe(getActivity(), new Observer<Resource<ShowEntity>>() {
+            @Override
+            public void onChanged(Resource<ShowEntity> showEntityResource) {
+
+            }
+        });
     }
 
     private void initializeScrollListener() {

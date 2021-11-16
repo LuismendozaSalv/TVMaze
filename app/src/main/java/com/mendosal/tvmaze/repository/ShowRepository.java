@@ -85,12 +85,34 @@ public class ShowRepository {
         return searchedData;
     }
 
-    public LiveData<Resource<List<ShowEntity>>> saveFavoriteShow(int showId) {
-        return new NetworkBoundResource<List<ShowEntity>, ShowEntity>(){
+    public LiveData<Resource<ShowEntity>> saveFavoriteShow(int showId) {
+        return new NetworkBoundResource<ShowEntity, ShowEntity>(){
 
             @Override
             protected void saveCallResult(@NonNull ShowEntity item) {
                 showDao.saveFavoriteShow(item);
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ShowEntity> loadFromDb() {
+                return showDao.loadFavoriteShow(showId);
+            }
+
+            @NonNull
+            @Override
+            protected Call<ShowEntity> createCall() {
+                return showApiService.getShow(showId);
+            }
+        }.getAsLiveData();
+    }
+
+    public LiveData<Resource<List<ShowEntity>>> getFavoritesShows() {
+        return new NetworkBoundResource<List<ShowEntity>, ShowEntity>(){
+
+            @Override
+            protected void saveCallResult(@NonNull ShowEntity item) {
+
             }
 
             @NonNull
@@ -102,7 +124,7 @@ public class ShowRepository {
             @NonNull
             @Override
             protected Call<ShowEntity> createCall() {
-                return showApiService.getShow(showId);
+                return showApiService.getShow(0);
             }
         }.getAsLiveData();
     }
